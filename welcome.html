@@ -1,597 +1,547 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PathCare – Tu salud, tu poder</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --purple:       #a06cd5;
-  --purple-light: #c77dff;
-  --purple-deep:  #7b4bda;
-  --pink:         #f7a8b8;
-  --pink-deep:    #ff6f91;
-  --green:        #70c1b3;
-  --text:         #3d3450;
-  --muted:        #7a6e88;
-  --white:        #ffffff;
-  --card:         rgba(255,255,255,0.92);
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathCare – Tu salud, tu poder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple:       #a06cd5;
+            --purple-light: #c77dff;
+            --purple-deep:  #7b4bda;
+            --pink:         #f7a8b8;
+            --pink-deep:    #ff6f91;
+            --green:        #70c1b3;
+            --text:         #3d3450;
+            --muted:        #7a6e88;
+            --white:        #ffffff;
+            --card:         rgba(255,255,255,0.92);
+        }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f7d6e0 0%, #e6ccff 50%, #d4f0ea 100%);
-  color: var(--text);
-  overflow: hidden;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f7d6e0 0%, #e6ccff 50%, #d4f0ea 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
 
-body::before, body::after {
-  content: '';
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.45;
-  pointer-events: none;
-  z-index: 0;
-  animation: drift 12s ease-in-out infinite alternate;
-}
-body::before {
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, #c77dff, #f7a8b8);
-  top: -120px; left: -120px;
-}
-body::after {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, #70c1b3, #a06cd5);
-  bottom: -80px; right: -80px;
-  animation-delay: 4s;
-}
-@keyframes drift {
-  from { transform: translate(0,0) scale(1); }
-  to   { transform: translate(30px,20px) scale(1.08); }
-}
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.45;
+            pointer-events: none;
+            z-index: 0;
+            animation: drift 12s ease-in-out infinite alternate;
+        }
+        body::before {
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, #c77dff, #f7a8b8);
+            top: -120px; left: -120px;
+        }
+        body::after {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #70c1b3, #a06cd5);
+            bottom: -80px; right: -80px;
+            animation-delay: 4s;
+        }
+        @keyframes drift {
+            from { transform: translate(0,0) scale(1); }
+            to   { transform: translate(30px,20px) scale(1.08); }
+        }
 
-.page { display: none; position: fixed; inset: 0; z-index: 1; overflow-y: auto; }
-.page.active { display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .page { display: none; position: fixed; inset: 0; z-index: 1; overflow-y: auto; }
+        .page.active { display: flex; justify-content: center; align-items: center; padding: 20px; }
 
-/* ════ BIENVENIDA ════ */
-.welcome-wrap {
-  max-width: 480px;
-  width: 100%;
-  text-align: center;
-  animation: fadeUp 0.7s ease both;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+        /* ════ BIENVENIDA ════ */
+        .welcome-wrap {
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            animation: fadeUp 0.7s ease both;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
 
-.welcome-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-}
-.welcome-logo svg { width: 44px; height: 44px; }
-.welcome-logo span {
-  font-size: 28px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--purple), var(--pink-deep));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+        .welcome-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+        .welcome-logo svg { width: 44px; height: 44px; }
+        .welcome-logo span {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple), var(--pink-deep));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.welcome-ribbon {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(160,108,213,0.12);
-  border: 1px solid rgba(160,108,213,0.3);
-  border-radius: 30px;
-  padding: 6px 16px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--purple-deep);
-  margin-bottom: 22px;
-}
-.welcome-ribbon .dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple), var(--pink-deep));
-  flex-shrink: 0;
-}
+        .welcome-ribbon {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(160,108,213,0.12);
+            border: 1px solid rgba(160,108,213,0.3);
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--purple-deep);
+            margin-bottom: 22px;
+        }
+        .welcome-ribbon .dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--pink-deep));
+            flex-shrink: 0;
+        }
 
-.welcome-heading {
-  font-size: clamp(1.9rem, 5vw, 2.8rem);
-  font-weight: 800;
-  line-height: 1.18;
-  color: var(--text);
-  margin-bottom: 16px;
-}
-.welcome-heading em {
-  font-style: normal;
-  background: linear-gradient(135deg, var(--purple), var(--pink-deep));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+        .welcome-heading {
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.18;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+        .welcome-heading em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--purple), var(--pink-deep));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.welcome-sub {
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
-  margin-bottom: 32px;
-  max-width: 380px;
-  margin-left: auto;
-  margin-right: auto;
-}
+        .welcome-sub {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-.welcome-stats {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 32px;
-  flex-wrap: wrap;
-}
-.w-stat { text-align: center; }
-.w-stat-num {
-  font-size: 22px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--purple), var(--pink-deep));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-.w-stat-label { font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+        .welcome-stats {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .w-stat { text-align: center; }
+        .w-stat-num {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple), var(--pink-deep));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        .w-stat-label { font-size: 10px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
 
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 15px 28px;
-  background: linear-gradient(135deg, var(--purple), var(--purple-light));
-  color: white;
-  border: none;
-  border-radius: 16px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(160,108,213,0.4);
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-bottom: 12px;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(160,108,213,0.5); }
-.btn-primary:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 15px 28px;
+            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(160,108,213,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 12px;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(160,108,213,0.5); }
+        .btn-primary:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 14px 28px;
-  background: var(--card);
-  color: var(--purple);
-  border: 2px solid rgba(160,108,213,0.3);
-  border-radius: 16px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-.btn-secondary:hover { border-color: var(--purple); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(160,108,213,0.15); }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 28px;
+            background: var(--card);
+            color: var(--purple);
+            border: 2px solid rgba(160,108,213,0.3);
+            border-radius: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .btn-secondary:hover { border-color: var(--purple); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(160,108,213,0.15); }
 
-.trust-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  justify-content: center;
-}
-.trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(112,193,179,0.12);
-  border: 1px solid rgba(112,193,179,0.3);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 11px;
-  color: #1a8a77;
-  font-weight: 500;
-}
+        .trust-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(112,193,179,0.12);
+            border: 1px solid rgba(112,193,179,0.3);
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 11px;
+            color: #1a8a77;
+            font-weight: 500;
+        }
 
-/* ════ AUTH CARDS ════ */
-.auth-card {
-  background: var(--card);
-  backdrop-filter: blur(18px);
-  border-radius: 28px;
-  padding: 36px 32px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 20px 60px rgba(160,108,213,0.18), 0 0 0 1px rgba(255,255,255,0.7);
-  animation: fadeUp 0.6s ease both;
-}
+        /* ════ AUTH CARDS ════ */
+        .auth-card {
+            background: var(--card);
+            backdrop-filter: blur(18px);
+            border-radius: 28px;
+            padding: 36px 32px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(160,108,213,0.18), 0 0 0 1px rgba(255,255,255,0.7);
+            animation: fadeUp 0.6s ease both;
+        }
 
-.auth-logo {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-bottom: 8px;
-}
-.auth-logo svg { width: 34px; height: 34px; }
-.auth-logo span {
-  font-size: 20px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--purple), var(--pink-deep));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+        .auth-logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 8px;
+        }
+        .auth-logo svg { width: 34px; height: 34px; }
+        .auth-logo span {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--purple), var(--pink-deep));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.auth-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-.auth-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.5; }
+        .auth-title { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .auth-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 28px; line-height: 1.5; }
 
-.input-group { margin-bottom: 16px; }
-.input-group label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.input-wrap { position: relative; }
-.input-wrap svg {
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--purple-light);
-  pointer-events: none;
-}
-.input-wrap input {
-  width: 100%;
-  padding: 12px 14px 12px 42px;
-  background: rgba(160,108,213,0.06);
-  border: 1.5px solid rgba(160,108,213,0.18);
-  border-radius: 13px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.input-wrap input:focus {
-  border-color: var(--purple);
-  box-shadow: 0 0 0 3px rgba(160,108,213,0.15);
-}
-.input-wrap input::placeholder { color: #c0b8cc; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap svg {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--purple-light);
+            pointer-events: none;
+        }
+        .input-wrap input {
+            width: 100%;
+            padding: 12px 14px 12px 42px;
+            background: rgba(160,108,213,0.06);
+            border: 1.5px solid rgba(160,108,213,0.18);
+            border-radius: 13px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .input-wrap input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(160,108,213,0.15);
+        }
+        .input-wrap input::placeholder { color: #c0b8cc; }
 
-.auth-switch { text-align: center; margin-top: 20px; font-size: 13px; color: var(--muted); }
-.auth-switch a { color: var(--purple); font-weight: 600; cursor: pointer; text-decoration: none; }
-.auth-switch a:hover { color: var(--purple-deep); }
+        .auth-switch { text-align: center; margin-top: 20px; font-size: 13px; color: var(--muted); }
+        .auth-switch a { color: var(--purple); font-weight: 600; cursor: pointer; text-decoration: none; }
+        .auth-switch a:hover { color: var(--purple-deep); }
 
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0;
-  font-size: 12px;
-  color: var(--muted);
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(160,108,213,0.18);
-}
-
-/* ════ HOMEPAGE ════ */
-#page-homepage { background: linear-gradient(135deg, #f7d6e0, #e6ccff); }
-.homepage-content { text-align: center; color: var(--text); animation: fadeUp 0.6s ease both; }
-.homepage-content h1 {
-  font-size: 2.4rem; font-weight: 800; margin-bottom: 10px;
-  background: linear-gradient(135deg, var(--purple), var(--pink-deep));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.homepage-content p { color: var(--muted); margin-bottom: 28px; font-size: 15px; }
-</style>
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+            font-size: 12px;
+            color: var(--muted);
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(160,108,213,0.18);
+        }
+    </style>
 </head>
 <body>
 
-<!-- ══ BIENVENIDA ══ -->
 <div class="page active" id="page-bienvenida">
-  <div class="welcome-wrap">
+    <div class="welcome-wrap">
+        <div class="welcome-logo">
+            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="22" fill="url(#wg)"/>
+                <path d="M22 34C22 34 12 27 12 20a6 6 0 0 1 10-4.47A6 6 0 0 1 32 20c0 7-10 14-10 14z" fill="white" opacity="0.9"/>
+                <defs>
+                    <linearGradient id="wg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#a06cd5"/><stop offset="1" stop-color="#ff6f91"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>PathCare</span>
+        </div>
 
-    <div class="welcome-logo">
-      <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="22" r="22" fill="url(#wg)"/>
-        <path d="M22 34C22 34 12 27 12 20a6 6 0 0 1 10-4.47A6 6 0 0 1 32 20c0 7-10 14-10 14z" fill="white" opacity="0.9"/>
-        <defs>
-          <linearGradient id="wg" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#a06cd5"/><stop offset="1" stop-color="#ff6f91"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span>PathCare</span>
+        <div class="welcome-ribbon">
+            <span class="dot"></span>
+            Detección temprana · Panamá
+        </div>
+
+        <h1 class="welcome-heading">
+            Cuida tu salud.<br>
+            <em>Actúa antes de que sea tarde.</em>
+        </h1>
+
+        <p class="welcome-sub">
+            PathCare te acompaña en la prevención y detección temprana del cáncer de mama. Evalúa tu riesgo, encuentra centros cercanos y toma acción hoy.
+        </p>
+
+        <div class="welcome-stats">
+            <div class="w-stat">
+                <div class="w-stat-num">~800</div>
+                <div class="w-stat-label">casos nuevos<br>al año en Panamá</div>
+            </div>
+            <div class="w-stat" style="border-left:1px solid rgba(160,108,213,0.2);border-right:1px solid rgba(160,108,213,0.2);padding:0 24px;">
+                <div class="w-stat-num">60%</div>
+                <div class="w-stat-label">detectados en<br>etapas tardías</div>
+            </div>
+            <div class="w-stat">
+                <div class="w-stat-num">98%</div>
+                <div class="w-stat-label">supervivencia con<br>detección temprana</div>
+            </div>
+        </div>
+
+        <button class="btn-primary" onclick="showPage('signup')">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            Crear mi cuenta gratis
+        </button>
+        <button class="btn-secondary" onclick="showPage('login')">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10,17 15,12 10,7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            Ya tengo una cuenta
+        </button>
+
+        <div class="trust-row">
+            <span class="trust-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Datos protegidos
+            </span>
+            <span class="trust-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+                Completamente gratis
+            </span>
+            <span class="trust-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                Orientación personalizada
+            </span>
+        </div>
     </div>
-
-    <div class="welcome-ribbon">
-      <span class="dot"></span>
-      Detección temprana · Panamá
-    </div>
-
-    <h1 class="welcome-heading">
-      Cuida tu salud.<br>
-      <em>Actúa antes de que sea tarde.</em>
-    </h1>
-
-    <p class="welcome-sub">
-      PathCare te acompaña en la prevención y detección temprana del cáncer de mama. Evalúa tu riesgo, encuentra centros cercanos y toma acción hoy.
-    </p>
-
-    <div class="welcome-stats">
-      <div class="w-stat">
-        <div class="w-stat-num">~800</div>
-        <div class="w-stat-label">casos nuevos<br>al año en Panamá</div>
-      </div>
-      <div class="w-stat" style="border-left:1px solid rgba(160,108,213,0.2);border-right:1px solid rgba(160,108,213,0.2);padding:0 24px;">
-        <div class="w-stat-num">60%</div>
-        <div class="w-stat-label">detectados en<br>etapas tardías</div>
-      </div>
-      <div class="w-stat">
-        <div class="w-stat-num">98%</div>
-        <div class="w-stat-label">supervivencia con<br>detección temprana</div>
-      </div>
-    </div>
-
-    <button class="btn-primary" onclick="showPage('signup')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-      Crear mi cuenta gratis
-    </button>
-    <button class="btn-secondary" onclick="showPage('login')">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10,17 15,12 10,7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-      Ya tengo una cuenta
-    </button>
-
-    <div class="trust-row">
-      <span class="trust-badge">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Datos protegidos
-      </span>
-      <span class="trust-badge">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-        Completamente gratis
-      </span>
-      <span class="trust-badge">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-        Orientación personalizada
-      </span>
-    </div>
-
-  </div>
 </div>
 
-<!-- ══ REGISTRO ══ -->
 <div class="page" id="page-signup">
-  <div class="auth-card">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <svg viewBox="0 0 34 34" fill="none">
+                <circle cx="17" cy="17" r="17" fill="url(#ag)"/>
+                <path d="M17 26C17 26 9 21 9 16a5 5 0 0 1 8-3.96A5 5 0 0 1 25 16c0 5-8 10-8 10z" fill="white" opacity="0.9"/>
+                <defs>
+                    <linearGradient id="ag" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#a06cd5"/><stop offset="1" stop-color="#ff6f91"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>PathCare</span>
+        </div>
 
-    <div class="auth-logo">
-      <svg viewBox="0 0 34 34" fill="none">
-        <circle cx="17" cy="17" r="17" fill="url(#ag)"/>
-        <path d="M17 26C17 26 9 21 9 16a5 5 0 0 1 8-3.96A5 5 0 0 1 25 16c0 5-8 10-8 10z" fill="white" opacity="0.9"/>
-        <defs>
-          <linearGradient id="ag" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#a06cd5"/><stop offset="1" stop-color="#ff6f91"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span>PathCare</span>
+        <h2 class="auth-title">Crea tu cuenta</h2>
+        <p class="auth-subtitle">Únete a PathCare hoy. Es completamente gratis.</p>
+
+        <form id="register-form">
+            <div class="input-group">
+                <label>Nombre completo</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <input type="text" id="register-name" placeholder="Ej. María González" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Correo electrónico</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <input type="email" id="register-email" placeholder="tu@correo.com" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Contraseña</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="register-password" placeholder="Mínimo 6 caracteres" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary" id="register-btn" style="margin-top:6px;">
+                Crear mi cuenta
+            </button>
+        </form>
+
+        <div class="divider">o</div>
+        <div class="auth-switch">¿Ya tienes cuenta? <a onclick="showPage('login')">Inicia sesión aquí</a></div>
     </div>
-
-    <h2 class="auth-title">Crea tu cuenta</h2>
-    <p class="auth-subtitle">Únete a PathCare y empieza a cuidar tu salud hoy. Es completamente gratis.</p>
-
-    <form id="register-form">
-      <div class="input-group">
-        <label>Nombre completo</label>
-        <div class="input-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <input type="text" id="register-name" placeholder="Ej. María González" required>
-        </div>
-      </div>
-      <div class="input-group">
-        <label>Correo electrónico</label>
-        <div class="input-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <input type="email" id="register-email" placeholder="tu@correo.com" required>
-        </div>
-      </div>
-      <div class="input-group">
-        <label>Contraseña</label>
-        <div class="input-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <input type="password" id="register-password" placeholder="Mínimo 6 caracteres" required>
-        </div>
-      </div>
-      <button type="submit" class="btn-primary" id="register-btn" style="margin-top:6px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-        Crear mi cuenta
-      </button>
-    </form>
-
-    <div class="divider">o</div>
-    <div class="auth-switch">¿Ya tienes cuenta? <a onclick="showPage('login')">Inicia sesión aquí</a></div>
-
-  </div>
 </div>
 
-<!-- ══ LOGIN ══ -->
 <div class="page" id="page-login">
-  <div class="auth-card">
-
-    <div class="auth-logo">
-      <svg viewBox="0 0 34 34" fill="none">
-        <circle cx="17" cy="17" r="17" fill="url(#lg)"/>
-        <path d="M17 26C17 26 9 21 9 16a5 5 0 0 1 8-3.96A5 5 0 0 1 25 16c0 5-8 10-8 10z" fill="white" opacity="0.9"/>
-        <defs>
-          <linearGradient id="lg" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#a06cd5"/><stop offset="1" stop-color="#ff6f91"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <span>PathCare</span>
-    </div>
-
-    <h2 class="auth-title">¡Bienvenida de vuelta!</h2>
-    <p class="auth-subtitle">Inicia sesión para continuar cuidando tu salud con PathCare.</p>
-
-    <form id="login-form">
-      <div class="input-group">
-        <label>Correo electrónico</label>
-        <div class="input-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <input type="email" id="login-email" placeholder="tu@correo.com" required>
+    <div class="auth-card">
+        <div class="auth-logo">
+            <svg viewBox="0 0 34 34" fill="none">
+                <circle cx="17" cy="17" r="17" fill="url(#lg)"/>
+                <path d="M17 26C17 26 9 21 9 16a5 5 0 0 1 8-3.96A5 5 0 0 1 25 16c0 5-8 10-8 10z" fill="white" opacity="0.9"/>
+                <defs>
+                    <linearGradient id="lg" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#a06cd5"/><stop offset="1" stop-color="#ff6f91"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>PathCare</span>
         </div>
-      </div>
-      <div class="input-group">
-        <label>Contraseña</label>
-        <div class="input-wrap">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <input type="password" id="login-password" placeholder="Tu contraseña" required>
+
+        <h2 class="auth-title">¡Bienvenida!</h2>
+        <p class="auth-subtitle">Inicia sesión para continuar cuidando tu salud.</p>
+
+        <form id="login-form">
+            <div class="input-group">
+                <label>Correo electrónico</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <input type="email" id="login-email" placeholder="tu@correo.com" required>
+                </div>
+            </div>
+            <div class="input-group">
+                <label>Contraseña</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="login-password" placeholder="Tu contraseña" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary" id="login-btn" style="margin-top:6px;">
+                Entrar a PathCare
+            </button>
+        </form>
+
+        <div class="divider">o</div>
+        <div class="auth-switch">¿No tienes cuenta? <a onclick="showPage('signup')">Regístrate gratis</a></div>
+        <div class="auth-switch" style="margin-top:10px;">
+            <a onclick="showPage('bienvenida')" style="color:var(--muted);font-weight:400;font-size:12px;">← Volver al inicio</a>
         </div>
-      </div>
-      <button type="submit" class="btn-primary" id="login-btn" style="margin-top:6px;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10,17 15,12 10,7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
-        Entrar a PathCare
-      </button>
-    </form>
-
-    <div class="divider">o</div>
-    <div class="auth-switch">¿No tienes cuenta? <a onclick="showPage('signup')">Regístrate gratis</a></div>
-    <div class="auth-switch" style="margin-top:10px;">
-      <a onclick="showPage('bienvenida')" style="color:var(--muted);font-weight:400;font-size:12px;">← Volver al inicio</a>
     </div>
-
-  </div>
-</div>
-
-<!-- ══ HOMEPAGE POST-LOGIN ══ -->
-<div class="page" id="page-homepage">
-  <div class="homepage-content">
-    <h1>PathCare</h1>
-    <p id="user-name">Cargando…</p>
-    <button class="btn-primary" style="max-width:240px;margin:0 auto 12px;" onclick="window.location.href='app.html'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-      Ir a la app
-    </button>
-    <button class="btn-secondary" style="max-width:240px;margin:0 auto;" onclick="logout()">Cerrar sesión</button>
-  </div>
 </div>
 
 <script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js';
-  import { getAuth, createUserWithEmailAndPassword, sendEmailVerification,
-           signInWithEmailAndPassword, signOut, onAuthStateChanged }
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification,
+             signInWithEmailAndPassword, onAuthStateChanged, signOut } 
     from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js';
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDHHi3h2G5VY4bCg92QWZOjM6Bl6pco2ro",
-    authDomain: "aba2025-8df97.firebaseapp.com",
-    projectId: "aba2025-8df97",
-    storageBucket: "aba2025-8df97.appspot.com",
-    messagingSenderId: "819645801939",
-    appId: "1:819645801939:web:2c4f13c8029003c434bb26"
-  };
+    const firebaseConfig = {
+        apiKey: "AIzaSyDHHi3h2G5VY4bCg92QWZOjM6Bl6pco2ro",
+        authDomain: "aba2025-8df97.firebaseapp.com",
+        projectId: "aba2025-8df97",
+        storageBucket: "aba2025-8df97.appspot.com",
+        messagingSenderId: "819645801939",
+        appId: "1:819645801939:web:2c4f13c8029003c434bb26"
+    };
 
-  const app  = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  window.showPage = function(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + page).classList.add('active');
-    window.scrollTo(0, 0);
-  }
-
-  // REGISTRO
-  document.getElementById('register-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const email    = document.getElementById('register-email').value;
-    const password = document.getElementById('register-password').value;
-    const name     = document.getElementById('register-name').value;
-    if (!email || !password || !name) { alert('Por favor completa todos los campos.'); return; }
-
-    const btn = document.getElementById('register-btn');
-    btn.disabled = true; btn.textContent = 'Creando cuenta…';
-
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      await sendEmailVerification(cred.user);
-      alert('¡Registro exitoso! Te enviamos un correo de verificación. Ahora inicia sesión.');
-      showPage('login');
-    } catch (err) {
-      alert('Error: ' + err.message);
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Crear mi cuenta';
+    // Navegación entre vistas
+    window.showPage = function(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
+        window.scrollTo(0, 0);
     }
-  });
 
-  // LOGIN
-  document.getElementById('login-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const email    = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+    // REGISTRO -> Redirige al index tras éxito
+    document.getElementById('register-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const btn = document.getElementById('register-btn');
+        
+        btn.disabled = true; btn.textContent = 'Creando cuenta…';
+        try {
+            const cred = await createUserWithEmailAndPassword(auth, email, password);
+            await sendEmailVerification(cred.user);
+            alert('¡Registro exitoso! Te enviamos un correo de verificación.');
+            // Redirigir al panel principal
+            window.location.href = 'index.html';
+        } catch (err) {
+            alert('Error: ' + err.message);
+            btn.disabled = false; btn.textContent = 'Crear mi cuenta';
+        }
+    });
 
-    const btn = document.getElementById('login-btn');
-    btn.disabled = true; btn.textContent = 'Entrando…';
+    // LOGIN -> Redirige al index tras éxito
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const btn = document.getElementById('login-btn');
 
-    try {
-      const cred = await signInWithEmailAndPassword(auth, email, password);
-      if (!cred.user.emailVerified) {
-        alert('Por favor verifica tu correo antes de entrar.');
-        await signOut(auth);
-        btn.disabled = false; btn.textContent = 'Entrar a PathCare';
-        return;
-      }
-      document.getElementById('user-name').textContent = `Hola, ${cred.user.email} 👋`;
-      showPage('homepage');
-    } catch (err) {
-      alert('Error: ' + err.message);
-      btn.disabled = false; btn.textContent = 'Entrar a PathCare';
-    }
-  });
+        btn.disabled = true; btn.textContent = 'Entrando…';
+        try {
+            const cred = await signInWithEmailAndPassword(auth, email, password);
+            if (!cred.user.emailVerified) {
+                alert('Por favor verifica tu correo antes de entrar.');
+                await signOut(auth);
+                btn.disabled = false; btn.textContent = 'Entrar a PathCare';
+                return;
+            }
+            // Redirigir al panel principal
+            window.location.href = 'index.html';
+        } catch (err) {
+            alert('Error: ' + err.message);
+            btn.disabled = false; btn.textContent = 'Entrar a PathCare';
+        }
+    });
 
-  // LOGOUT
-  window.logout = async function() {
-    await signOut(auth);
-    showPage('bienvenida');
-  }
-
-  // SESIÓN PERSISTENTE
-  onAuthStateChanged(auth, (user) => {
-    if (user && user.emailVerified) {
-      document.getElementById('user-name').textContent = `Hola, ${user.email} 👋`;
-      showPage('homepage');
-    }
-  });
-
-  // Leer ?page= al volver del quiz/app
-  const params = new URLSearchParams(window.location.search);
-  const pg = params.get('page');
-  if (pg && document.getElementById('page-' + pg)) showPage(pg);
+    // SESIÓN ACTIVA -> Si ya está logueado, saltar welcome e ir al index
+    onAuthStateChanged(auth, (user) => {
+        if (user && user.emailVerified) {
+            window.location.href = 'index.html';
+        }
+    });
 </script>
 </body>
 </html>
