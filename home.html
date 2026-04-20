@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PathCare</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../logo.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(70%) saturate(120%);
+}
+
+.page { display: none; width: 100%; }
+.page.active { display: flex; justify-content: center; align-items: center; }
+
+.container-card, .container {
+    text-align: center;
+    background: rgb(225, 225, 222); 
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+}
+
+.container {
+    background-color: #2F4156;
+    color: white;
+    width: 400px;
+    padding: 20px 30px;
+}
+
+.welcome-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #bfc1c4;
+    margin-bottom: 20px;
+}
+
+.welcome-subtitle {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #567C8D;
+    margin-bottom: 20px;
+}
+
+.welcome-text {
+    font-size: 1.2rem;
+    color: #567C8D;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.welcome-button, .btn {
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0.1); 
+    background: #0d6efd;
+    color: white;
+}
+
+.welcome-button:hover, .btn:hover {
+    background-color: #0b5ed7; 
+    transform: translateY(-3px); 
+}
+
+.container header {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+form .btn {
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.switch {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.switch a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.switch a:hover {
+    color: white;
+}
+
+#page-homepage {
+    background: linear-gradient(135deg, #f7d6e0, #e6ccff);
+    width: 100%;
+    height: 100vh;
+}
+
+.homepage-content {
+    text-align: center;
+    color: #2F4156;
+}
+
+.homepage-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.homepage-content button {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background: #a06cd5;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- PANTALLA 1: BIENVENIDA -->
+<div class="page active" id="page-bienvenida">
+    <div class="container-card">
+        <h1 class="welcome-title">¡Bienvenido!</h1>
+        <h2 class="welcome-subtitle">Te envío un abrazo virtual</h2>
+        <p class="welcome-text">
+            Recuerda lo valiosa persona que eres. Cuida de tu salud mental como lo harías con cualquier otro aspecto de tu bienestar.
+        </p>
+        <div class="button-container">
+            <button class="welcome-button" onclick="showPage('signup')">Crear una cuenta</button>
+        </div>
+    </div>
+</div>
+
+<!-- PANTALLA 2: REGISTRO -->
+<div class="page" id="page-signup">
+    <div class="container">
+        <header>Registrarse</header>
+        <form id="register-form">
+            <input type="text" id="register-name" placeholder="Nombre completo" required>
+            <input type="email" id="register-email" placeholder="Dirección de correo electrónico" required>
+            <input type="password" id="register-password" placeholder="Contraseña" required>
+            <button type="submit" class="btn" id="register-btn">Crear cuenta</button>
+        </form>
+        <div class="switch">
+            <p>¿Ya tienes una cuenta? <a onclick="showPage('login')">Iniciar sesión</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- PANTALLA 3: LOGIN -->
+<div class="page" id="page-login">
+    <div class="container">
+        <header>Iniciar Sesión</header>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="Correo electrónico" required>
+            <input type="password" id="login-password" placeholder="Contraseña" required>
+            <button type="submit" class="btn" id="login-btn">Entrar</button>
+        </form>
+        <div class="switch">
+            <p>¿No tienes cuenta? <a onclick="showPage('signup')">Regístrate</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- PANTALLA 4: HOMEPAGE -->
+<div class="page" id="page-homepage">
+    <div class="homepage-content">
+        <h1>Bienvenido a PathCare</h1>
+        <p id="user-name">Hola, usuario</p>
+        <button onclick="logout()">Cerrar sesión</button>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js';
+    import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js';
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDHHi3h2G5VY4bCg92QWZOjM6Bl6pco2ro",
+        authDomain: "aba2025-8df97.firebaseapp.com",
+        projectId: "aba2025-8df97",
+        storageBucket: "aba2025-8df97.appspot.com",
+        messagingSenderId: "819645801939",
+        appId: "1:819645801939:web:2c4f13c8029003c434bb26"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // NAVEGACIÓN
+    window.showPage = function(page) {
+        document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+        document.getElementById("page-" + page).classList.add("active");
+    }
+
+    // REGISTRO
+    document.getElementById('register-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const name = document.getElementById('register-name').value;
+
+        if (!email || !password || !name) {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        document.getElementById('register-btn').disabled = true;
+        document.getElementById('register-btn').textContent = 'Creando...';
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await sendEmailVerification(userCredential.user);
+            alert("Registro exitoso. Te enviamos un correo de verificación. Ahora inicia sesión.");
+            showPage('login'); // AQUÍ VA A LOGIN, NO A HOMEPAGE
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        } finally {
+            document.getElementById('register-btn').disabled = false;
+            document.getElementById('register-btn').textContent = 'Crear cuenta';
+        }
+    });
+
+    // LOGIN
+    document.getElementById('login-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        document.getElementById('login-btn').disabled = true;
+        document.getElementById('login-btn').textContent = 'Entrando...';
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            if(!userCredential.user.emailVerified){
+                alert("Por favor verifica tu correo antes de entrar.");
+                await signOut(auth);
+                document.getElementById('login-btn').disabled = false;
+                document.getElementById('login-btn').textContent = 'Entrar';
+                return;
+            }
+            showPage('homepage'); // SOLO AQUÍ VA A HOMEPAGE
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+            document.getElementById('login-btn').disabled = false;
+            document.getElementById('login-btn').textContent = 'Entrar';
+        }
+    });
+
+    // LOGOUT
+    window.logout = async function() {
+        await signOut(auth);
+        showPage('bienvenida');
+    }
+
+    // MANTIENE SESIÓN ACTIVA
+    onAuthStateChanged(auth, (user) => {
+        if (user && user.emailVerified) {
+            document.getElementById('user-name').textContent = `Hola, ${user.email}`;
+            showPage('homepage');
+        }
+    });
+</script>
+</body>
+</html>

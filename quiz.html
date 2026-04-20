@@ -4,170 +4,184 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PathCare - Evaluación</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f7d6e0, #e6ccff);
-  margin: 0;
-}
-
-/* NAVBAR */
-.navbar {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 20px;
-  color:white;
-  background:linear-gradient(90deg,#a06cd5,#c77dff);
-}
-
-/* BOTÓN VOLVER */
-.back-btn{
-  background:white;
-  border:none;
-  border-radius:10px;
-  padding:6px 12px;
-  cursor:pointer;
-  font-weight:600;
-}
-
-/* QUIZ */
-.page-container {
-  max-width:600px;
-  margin:auto;
-  padding:20px;
-}
-
-.t-header {
-  background: linear-gradient(135deg,#C94BC7,#7B4BDA);
-  color:white;
-  text-align:center;
-  padding:24px;
-  border-radius:20px 20px 0 0;
-}
-
-.t-progress {
-  background:white;
-  padding:16px;
-}
-
-.t-card {
-  background:white;
-  margin:16px;
-  padding:20px;
-  border-radius:16px;
-}
-
-.t-option {
-  display:flex;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  margin-bottom:10px;
-  cursor:pointer;
-}
-
-.t-buttons {
-  display:flex;
-  gap:10px;
-  margin:0 16px 16px;
-}
-
-.t-btn {
-  flex:1;
-  padding:12px;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.t-btn-next { background:#D91A96; color:white; }
-.t-btn-back { background:#eee; }
-
-/* NAVBAR INFERIOR */
-.nav-bottom {
-  position:fixed;
-  bottom:0;
-  width:100%;
-  display:flex;
-  justify-content:space-around;
-  padding:10px;
-  background:white;
-}
-
-.nav-item {
-  font-size:12px;
-  background:none;
-  border:none;
-  cursor:pointer;
-}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f7d6e0,#e6ccff);min-height:100vh;padding-bottom:80px;}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;color:white;background:linear-gradient(90deg,#a06cd5,#c77dff);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.navbar h2{font-size:20px;}
+.back-btn{background:white;border:none;border-radius:10px;padding:6px 14px;cursor:pointer;font-weight:600;color:#a06cd5;font-family:'Poppins',sans-serif;font-size:13px;}
+.page-container{max-width:500px;margin:20px auto;padding:0 20px;}
+.t-header{background:linear-gradient(135deg,#C94BC7,#7B4BDA);color:white;text-align:center;padding:24px;border-radius:20px 20px 0 0;}
+.t-header h1{font-size:26px;font-weight:700;margin:0 0 4px;}
+.t-header p{font-size:14px;opacity:0.9;}
+.t-progress{background:white;padding:16px 20px;border-bottom:1px solid #eee;}
+.t-progress-text{display:flex;justify-content:space-between;font-size:13px;color:#555;margin-bottom:8px;}
+.t-progress-bar{width:100%;height:6px;background:#e5e5e5;border-radius:10px;overflow:hidden;}
+.t-progress-fill{height:100%;background:linear-gradient(90deg,#C94BC7,#7B4BDA);border-radius:10px;transition:width 0.4s ease;}
+.t-card{background:white;margin:0 0;padding:20px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+.t-card h2{color:#C94BC7;font-size:18px;margin:0 0 18px;line-height:1.4;}
+.t-option{display:flex;align-items:center;border:1.5px solid #e0e0e0;border-radius:12px;padding:13px 16px;margin-bottom:10px;cursor:pointer;transition:all 0.2s;}
+.t-option:last-of-type{margin-bottom:0;}
+.t-option:hover{border-color:#C94BC7;background:#fdf6fd;}
+.t-option.selected{border-color:#C94BC7;background:#fdf6fd;}
+.t-option input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:2px solid #ccc;border-radius:50%;margin-right:12px;position:relative;flex-shrink:0;transition:border-color 0.2s;}
+.t-option.selected input{border-color:#C94BC7;}
+.t-option.selected input::after{content:'';width:10px;height:10px;background:#C94BC7;border-radius:50%;position:absolute;top:3px;left:3px;}
+.t-option span{font-size:14px;color:#222;}
+.t-buttons{display:flex;gap:12px;margin:16px 0 0;}
+.t-btn{flex:1;padding:13px;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:0.2s;}
+.t-btn-back{background:#f0f0f0;color:#666;}
+.t-btn-next{background:#D91A96;color:white;}
+.t-btn-next:hover{background:#b5157a;}
+.nav-bottom{position:fixed;bottom:0;left:0;width:100%;display:flex;justify-content:space-around;padding:10px 0 8px;border-top:1px solid #eee;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;background:none;border:none;cursor:pointer;color:#666;font-family:'Poppins',sans-serif;padding:4px 12px;transition:0.2s;}
+.nav-item.active{color:#a06cd5;}
+.nav-item svg{width:22px;height:22px;}
 </style>
 </head>
-
 <body>
 
 <div class="navbar">
   <h2>PathCare</h2>
-  <button class="back-btn" onclick="window.location.href='app.html'">Volver</button>
+  <button class="back-btn" onclick="goTo('inicio')">← Volver</button>
 </div>
 
 <div class="page-container">
-
-<div class="t-header">
-<h1>Evaluación</h1>
-<p>Cáncer de mama</p>
+  <div class="t-header">
+    <h1>Evaluación de Riesgo</h1>
+    <p>Cáncer de mama · Panamá</p>
+  </div>
+  <div class="t-progress">
+    <div class="t-progress-text">
+      <span id="progLabel">Pregunta 1 de 6</span>
+      <span id="progPct">17%</span>
+    </div>
+    <div class="t-progress-bar"><div class="t-progress-fill" id="progFill" style="width:17%"></div></div>
+  </div>
+  <div class="t-card" id="card"></div>
+  <div class="t-buttons">
+    <button class="t-btn t-btn-back" onclick="prev()">← Anterior</button>
+    <button class="t-btn t-btn-next" id="btnNext" onclick="next()">Siguiente →</button>
+  </div>
 </div>
 
-<div class="t-card" id="card"></div>
-
-<div class="t-buttons">
-<button class="t-btn t-btn-back" onclick="prev()">Anterior</button>
-<button class="t-btn t-btn-next" onclick="next()">Siguiente</button>
-</div>
-
-</div>
-
-<!-- NAVBAR -->
 <div class="nav-bottom">
-<button class="nav-item" onclick="window.location.href='app.html'">Inicio</button>
-<button class="nav-item">Riesgo</button>
-<button class="nav-item" onclick="window.location.href='app.html#centros'">Centros</button>
-<button class="nav-item" onclick="window.location.href='app.html#perfil'">Perfil</button>
+  <button class="nav-item" onclick="goTo('inicio')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    Inicio
+  </button>
+  <button class="nav-item active">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+    Riesgo
+  </button>
+  <button class="nav-item" onclick="goTo('centros')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Centros
+  </button>
+  <button class="nav-item" onclick="goTo('donacion')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6 2 2 7 2 12c0 3.87 2.69 7.13 6.39 7.79L12 22l3.61-2.21C19.31 19.13 22 15.87 22 12c0-5-4-10-10-10z"/></svg>
+    Donar
+  </button>
+  <button class="nav-item" onclick="goTo('perfil')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Perfil
+  </button>
 </div>
 
 <script>
-const preguntas=[
-{t:"Edad",o:["<30","30-39","40-49","50+"]},
-{t:"Antecedentes",o:["No","Lejanos","Directos"]},
-{t:"Actividad física",o:["Regular","Poco","Nada"]}
+function goTo(page) {
+  window.location.href = 'index.html?page=' + page;
+}
+
+const preguntas = [
+  { t: "¿Cuál es tu rango de edad?", o: ["Menos de 30 años","30–39 años","40–49 años","50 años o más"] },
+  { t: "¿Tienes antecedentes familiares de cáncer de mama?", o: ["No","Familiares lejanos (tía, abuela)","Familiares directos (madre, hermana, hija)"] },
+  { t: "¿Has tenido algún resultado anormal en una mamografía?", o: ["Nunca me he hecho una","No, resultados normales","Sí, resultado anormal o incierto"] },
+  { t: "¿Con qué frecuencia realizas actividad física?", o: ["Más de 3 veces por semana","1–2 veces por semana","Rara vez o nunca"] },
+  { t: "¿Consumes alcohol con frecuencia?", o: ["Nunca","Ocasionalmente","Frecuentemente"] },
+  { t: "¿Has usado terapia hormonal por más de 5 años?", o: ["No","No estoy segura","Sí"] }
 ];
 
-let i=0;
+let current = 0;
+let respuestas = Array(preguntas.length).fill(null);
 
-function render(){
-let p=preguntas[i];
-let html=`<h3>${p.t}</h3>`;
-p.o.forEach(op=>{
-html+=`<label class="t-option"><input type="radio">${op}</label>`;
-});
-card.innerHTML=html;
+function render() {
+  const p = preguntas[current];
+  const pct = Math.round(((current + 1) / preguntas.length) * 100);
+  document.getElementById('progLabel').textContent = `Pregunta ${current+1} de ${preguntas.length}`;
+  document.getElementById('progPct').textContent = pct + '%';
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('btnNext').textContent = current === preguntas.length - 1 ? 'Ver resultado ✓' : 'Siguiente →';
+
+  let html = `<h2>${p.t}</h2>`;
+  p.o.forEach((op, idx) => {
+    const sel = respuestas[current] === idx ? 'selected' : '';
+    html += `<label class="t-option ${sel}" onclick="selectOption(${idx}, this)">
+      <input type="radio" ${sel ? 'checked' : ''}><span>${op}</span>
+    </label>`;
+  });
+  document.getElementById('card').innerHTML = html;
 }
 
-function next(){
-if(i<preguntas.length-1){i++;render();}
-else alert("Terminado");
+function selectOption(idx, el) {
+  respuestas[current] = idx;
+  document.querySelectorAll('.t-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
 }
 
-function prev(){
-if(i>0){i--;render();}
+function next() {
+  if (respuestas[current] === null) {
+    document.querySelectorAll('.t-option').forEach(o => {
+      o.style.borderColor = '#ffb3c6';
+      setTimeout(() => o.style.borderColor = '', 800);
+    });
+    return;
+  }
+  if (current < preguntas.length - 1) {
+    current++;
+    render();
+  } else {
+    showResultado();
+  }
+}
+
+function prev() {
+  if (current > 0) { current--; render(); }
+}
+
+function showResultado() {
+  const score = respuestas.reduce((s, r) => s + (r || 0), 0);
+  const nivel = score <= 3 ? 'Bajo' : score <= 7 ? 'Moderado' : 'Alto';
+  const color = score <= 3 ? '#70c1b3' : score <= 7 ? '#f7a800' : '#ff6f91';
+  const msg = score <= 3
+    ? 'Tu perfil indica un riesgo bajo. Continúa con tus hábitos saludables y realiza controles periódicos.'
+    : score <= 7
+    ? 'Tu perfil indica un riesgo moderado. Te recomendamos consultar con tu médico y realizarte una mamografía.'
+    : 'Tu perfil indica un riesgo elevado. Es importante que consultes a un especialista lo antes posible.';
+
+  document.querySelector('.t-header').style.display = 'none';
+  document.querySelector('.t-progress').style.display = 'none';
+  document.querySelector('.t-buttons').style.display = 'none';
+
+  document.getElementById('card').style.borderRadius = '20px';
+  document.getElementById('card').innerHTML = `
+    <div style="text-align:center;padding:10px 0;">
+      <div style="width:80px;height:80px;border-radius:50%;background:${color}22;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+      </div>
+      <h2 style="color:#3d3450;margin-bottom:8px;font-size:20px;">Evaluación completada</h2>
+      <p style="color:#7a6e88;font-size:13px;margin-bottom:20px;">Nivel de riesgo estimado:</p>
+      <div style="background:${color}22;border:2px solid ${color};border-radius:14px;padding:16px;margin-bottom:16px;">
+        <span style="font-size:32px;font-weight:700;color:${color};">${nivel}</span>
+      </div>
+      <p style="font-size:12px;color:#7a6e88;margin-bottom:24px;line-height:1.6;">${msg}<br><br><em>Esta evaluación es orientativa. Consulta siempre a un profesional de salud.</em></p>
+      <button onclick="goTo('centros')" style="width:100%;padding:13px;background:linear-gradient(135deg,#a06cd5,#c77dff);color:white;border:none;border-radius:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;font-size:14px;margin-bottom:10px;">Ver centros de mamografía</button>
+      <button onclick="goTo('inicio')" style="width:100%;padding:13px;background:#f0f0f0;color:#555;border:none;border-radius:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;font-size:14px;">Volver al inicio</button>
+    </div>`;
 }
 
 render();
 </script>
-
 </body>
 </html>
